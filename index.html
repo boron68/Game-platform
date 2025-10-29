@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Platform</title>
+</head>
+<body>
+    <div id="tooltip"></div>
+    <textarea id="codeArea"></textarea>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function createCodeEditor() {
+                const codeArea = document.getElementById('codeArea');
+                const lineNumbers = document.getElementById('lineNumbers');
+                
+                if (codeArea && lineNumbers) {
+                    const lines = codeArea.value.split('\n').length;
+                    let numbersText = '';
+                    
+                    for (let i = 1; i <= lines; i++) {
+                        numbersText += i + '\n';
+                    }
+                    lineNumbers.textContent = numbersText;
+                    
+                    // Виправлена опечатка в ID
+                    const tooltip = document.getElementById('tooltip');
+                    if (tooltip) {
+                        tooltip.style.opacity = '0';
+                    }
+                }
+            }
+
+            function updateLineNumbers() {
+                // Логіка оновлення номерів рядків
+                const codeArea = document.getElementById('codeArea');
+                const lineNumbers = document.getElementById('lineNumbers');
+                
+                if (codeArea && lineNumbers) {
+                    const lines = codeArea.value.split('\n').length;
+                    let numbersText = '';
+                    
+                    for (let i = 1; i <= lines; i++) {
+                        numbersText += i + '\n';
+                    }
+                    lineNumbers.textContent = numbersText;
+                    lineNumbers.scrollTop = codeArea.scrollTop;
+                }
+            }
+
+            // Правильний обробник прокрутки
+            const codeArea = document.getElementById('codeArea');
+            if (codeArea) {
+                codeArea.addEventListener('scroll', function() {
+                    updateLineNumbers();
+                });
+            }
+
+            // Ініціалізація редактора
+            createCodeEditor();
+        });
+    </script>
+</body>
+</html>
