@@ -418,6 +418,11 @@
             border-radius: 4px;
         }
 
+        .file-icon.exe {
+            background: #00bc0e;
+            border-radius: 4px;
+        }
+
         .file-name {
             font-size: 12px;
             text-align: center;
@@ -511,6 +516,209 @@
             background: #0056a3;
         }
 
+        /* Стилі для браузера */
+        .browser-toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .browser-address-bar {
+            flex: 1;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .browser-button {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .browser-content {
+            flex: 1;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .search-results {
+            margin-top: 20px;
+        }
+
+        .search-result {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-result-title {
+            color: #1a0dab;
+            font-size: 18px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .search-result-url {
+            color: #006621;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .search-result-desc {
+            color: #545454;
+            font-size: 14px;
+        }
+
+        /* Стилі для клікер гри */
+        .clicker-game {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .clicker-counter {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #0067c0;
+        }
+
+        .clicker-button {
+            padding: 20px 40px;
+            font-size: 24px;
+            background: #ffb900;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: transform 0.1s;
+        }
+
+        .clicker-button:active {
+            transform: scale(0.95);
+        }
+
+        .clicker-upgrades {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .upgrade-button {
+            padding: 10px 15px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Стилі для погоди */
+        .weather-widget {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .weather-icon {
+            font-size: 64px;
+            margin-bottom: 10px;
+        }
+
+        .weather-temp {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .weather-desc {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .weather-detail {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Стилі для встановлення EXE */
+        .installer-window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+        }
+
+        .installer-window.active {
+            display: block;
+        }
+
+        .installer-header {
+            padding: 20px;
+            background: #0067c0;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .installer-content {
+            padding: 20px;
+        }
+
+        .installer-progress {
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .installer-progress-bar {
+            height: 100%;
+            background: #0067c0;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .installer-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .installer-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .installer-button.primary {
+            background: #0067c0;
+            color: white;
+        }
+
         .context-menu {
             position: absolute;
             background: white;
@@ -594,6 +802,67 @@
         .modal-overlay.active {
             display: block;
         }
+
+        .scanner-window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+        }
+
+        .scanner-window.active {
+            display: block;
+        }
+
+        .scanner-header {
+            padding: 20px;
+            background: #d13438;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .scanner-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .scanner-progress {
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .scanner-progress-bar {
+            height: 100%;
+            background: #d13438;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .scanner-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .scanner-result.safe {
+            background: #dff6dd;
+            color: #107c10;
+        }
+
+        .scanner-result.warning {
+            background: #fff4ce;
+            color: #d13438;
+        }
     </style>
 </head>
 <body>
@@ -611,6 +880,12 @@
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                 </svg>
                 <span>Microsoft Edge</span>
+            </div>
+            <div class="desktop-icon" onclick="runExeInstaller('game_installer.exe')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/>
+                </svg>
+                <span>Game Installer.exe</span>
             </div>
         </div>
 
@@ -709,6 +984,12 @@
                         </svg>
                         Видалити
                     </button>
+                    <button class="toolbar-button" onclick="scanSelectedFile()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Сканувати
+                    </button>
                 </div>
                 <div class="file-manager-content">
                     <div class="sidebar">
@@ -754,9 +1035,15 @@
                 </div>
             </div>
             <div class="window-content">
-                <h2>Microsoft Edge</h2>
-                <p>Ласкаво просимо до Microsoft Edge!</p>
-                <p>Введіть пошуковий запит або адресу...</p>
+                <div class="browser-toolbar">
+                    <input type="text" class="browser-address-bar" id="addressBar" placeholder="Введіть запит або адресу..." onkeypress="handleBrowserSearch(event)">
+                    <button class="browser-button" onclick="performSearch()">Пошук</button>
+                </div>
+                <div class="browser-content" id="browserContent">
+                    <h2>Ласкаво просимо до Microsoft Edge!</h2>
+                    <p>Введіть пошуковий запит або адресу у рядку вище.</p>
+                    <div id="searchResults"></div>
+                </div>
             </div>
         </div>
 
@@ -819,6 +1106,7 @@
             <div class="context-menu-item" onclick="createNewFolder()">Нова папка</div>
             <div class="context-menu-item" onclick="deleteSelectedItem()">Видалити</div>
             <div class="context-menu-item" onclick="renameSelectedItem()">Перейменувати</div>
+            <div class="context-menu-item" onclick="scanSelectedFile()">Сканувати</div>
         </div>
 
         <!-- Модальне вікно для створення папки -->
@@ -828,6 +1116,44 @@
             <div class="modal-buttons">
                 <button class="modal-button" onclick="closeModal()">Скасувати</button>
                 <button class="modal-button primary" onclick="confirmCreateFolder()">Створити</button>
+            </div>
+        </div>
+
+        <!-- Вікно встановлення EXE -->
+        <div class="installer-window" id="installerWindow">
+            <div class="installer-header">
+                <h3>Встановлення програми</h3>
+            </div>
+            <div class="installer-content">
+                <p>Встановлення: <span id="installerFileName">game_installer.exe</span></p>
+                <div class="installer-progress">
+                    <div class="installer-progress-bar" id="installerProgress"></div>
+                </div>
+                <p id="installerStatus">Підготовка до встановлення...</p>
+                <div class="installer-buttons">
+                    <button class="installer-button" onclick="cancelInstallation()">Скасувати</button>
+                    <button class="installer-button primary" id="installerActionButton" onclick="startInstallation()">Встановити</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вікно сканування -->
+        <div class="scanner-window" id="scannerWindow">
+            <div class="scanner-header">
+                <h3>Сканування файлу</h3>
+            </div>
+            <div class="scanner-content">
+                <p>Сканування: <span id="scannerFileName">file.exe</span></p>
+                <div class="scanner-progress">
+                    <div class="scanner-progress-bar" id="scannerProgress"></div>
+                </div>
+                <p id="scannerStatus">Початок сканування...</p>
+                <div class="scanner-result" id="scannerResult">
+                    <p id="scannerResultText">Результат сканування</p>
+                </div>
+                <div class="installer-buttons">
+                    <button class="installer-button primary" onclick="closeScanner()">Закрити</button>
+                </div>
             </div>
         </div>
 
@@ -865,6 +1191,8 @@
                 loadFiles();
             } else if (appName === 'store') {
                 loadStoreApps();
+            } else if (appName === 'browser') {
+                resetBrowser();
             }
         }
 
@@ -902,7 +1230,8 @@
                 { name: 'Музика', type: 'folder' },
                 { name: 'Відео', type: 'folder' },
                 { name: 'Завантаження', type: 'folder' },
-                { name: 'readme.txt', type: 'file' }
+                { name: 'readme.txt', type: 'file' },
+                { name: 'game_installer.exe', type: 'exe' }
             ],
             documents: [
                 { name: 'Робота', type: 'folder' },
@@ -912,9 +1241,10 @@
                 { name: 'budget.xlsx', type: 'file' }
             ],
             downloads: [
-                { name: 'chrome_installer.exe', type: 'file' },
+                { name: 'chrome_installer.exe', type: 'exe' },
                 { name: 'photo.jpg', type: 'file' },
-                { name: 'music.mp3', type: 'file' }
+                { name: 'music.mp3', type: 'file' },
+                { name: 'suspicious_file.exe', type: 'exe' }
             ]
         };
 
@@ -931,6 +1261,8 @@
                 fileElement.ondblclick = () => {
                     if (file.type === 'folder') {
                         changeDirectory(file.name.toLowerCase());
+                    } else if (file.type === 'exe') {
+                        runExeInstaller(file.name);
                     }
                 };
                 
@@ -938,6 +1270,8 @@
                     <div class="file-icon ${file.type}">
                         ${file.type === 'folder' ? 
                             '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>' : 
+                            file.type === 'exe' ?
+                            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>' :
                             '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
                         }
                     </div>
@@ -1138,9 +1472,284 @@
             }
             
             if (app) {
-                alert(`Додаток "${app.name}" встановлюється...`);
-                // Тут була б реальна логіка встановлення
+                runExeInstaller(`${app.name}.exe`);
             }
+        }
+
+        // Браузер
+        function resetBrowser() {
+            document.getElementById('browserContent').innerHTML = `
+                <h2>Ласкаво просимо до Microsoft Edge!</h2>
+                <p>Введіть пошуковий запит або адресу у рядку вище.</p>
+            `;
+            document.getElementById('addressBar').value = '';
+        }
+
+        function handleBrowserSearch(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('addressBar').value.toLowerCase();
+            const browserContent = document.getElementById('browserContent');
+            
+            if (query.includes('погода') || query.includes('weather')) {
+                showWeather();
+            } else if (query.includes('клікер') || query.includes('clicker')) {
+                showClickerGame();
+            } else {
+                showSearchResults(query);
+            }
+        }
+
+        function showWeather() {
+            const browserContent = document.getElementById('browserContent');
+            const cities = [
+                { name: 'Київ', temp: '+17°C', desc: 'Хмарно', humidity: '75%', wind: '12 км/год' },
+                { name: 'Львів', temp: '+15°C', desc: 'Невеликий дощ', humidity: '80%', wind: '10 км/год' },
+                { name: 'Одеса', temp: '+19°C', desc: 'Сонячно', humidity: '65%', wind: '8 км/год' },
+                { name: 'Харків', temp: '+16°C', desc: 'Переважно хмарно', humidity: '70%', wind: '14 км/год' }
+            ];
+            
+            let weatherHTML = '<h2>Погода в Україні</h2>';
+            
+            cities.forEach(city => {
+                weatherHTML += `
+                    <div class="weather-widget" style="border: 1px solid #e1e1e1; border-radius: 8px; margin-bottom: 20px; padding: 15px;">
+                        <h3>${city.name}</h3>
+                        <div class="weather-temp">${city.temp}</div>
+                        <div class="weather-desc">${city.desc}</div>
+                        <div class="weather-details">
+                            <div class="weather-detail">Вологість: ${city.humidity}</div>
+                            <div class="weather-detail">Вітер: ${city.wind}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            browserContent.innerHTML = weatherHTML;
+        }
+
+        function showClickerGame() {
+            const browserContent = document.getElementById('browserContent');
+            
+            browserContent.innerHTML = `
+                <div class="clicker-game">
+                    <h2>Клікер Гра</h2>
+                    <div class="clicker-counter" id="clickCounter">0</div>
+                    <button class="clicker-button" onclick="incrementCounter()">Клікай тут!</button>
+                    <div class="clicker-upgrades">
+                        <button class="upgrade-button" onclick="buyUpgrade('autoClicker')">Автоклікер (10)</button>
+                        <button class="upgrade-button" onclick="buyUpgrade('doubleClick')">Подвійний клік (25)</button>
+                        <button class="upgrade-button" onclick="buyUpgrade('megaClick')">Мега клік (50)</button>
+                    </div>
+                    <p id="upgradeStatus"></p>
+                </div>
+            `;
+            
+            // Скидаємо лічильник при кожному відкритті гри
+            clickCount = 0;
+            updateCounter();
+        }
+
+        let clickCount = 0;
+        let autoClicker = false;
+        let doubleClick = false;
+        let megaClick = false;
+
+        function incrementCounter() {
+            let increment = 1;
+            if (doubleClick) increment *= 2;
+            if (megaClick) increment *= 5;
+            
+            clickCount += increment;
+            updateCounter();
+        }
+
+        function updateCounter() {
+            const counterElement = document.getElementById('clickCounter');
+            if (counterElement) {
+                counterElement.textContent = clickCount;
+            }
+        }
+
+        function buyUpgrade(upgradeType) {
+            const upgradeStatus = document.getElementById('upgradeStatus');
+            
+            switch(upgradeType) {
+                case 'autoClicker':
+                    if (clickCount >= 10 && !autoClicker) {
+                        clickCount -= 10;
+                        autoClicker = true;
+                        upgradeStatus.textContent = 'Автоклікер куплено! +1 клік кожні 2 секунди';
+                        setInterval(() => {
+                            if (autoClicker) {
+                                clickCount++;
+                                updateCounter();
+                            }
+                        }, 2000);
+                    } else if (autoClicker) {
+                        upgradeStatus.textContent = 'Ви вже маєте автоклікер!';
+                    } else {
+                        upgradeStatus.textContent = 'Недостатньо кліків! Потрібно 10';
+                    }
+                    break;
+                    
+                case 'doubleClick':
+                    if (clickCount >= 25 && !doubleClick) {
+                        clickCount -= 25;
+                        doubleClick = true;
+                        upgradeStatus.textContent = 'Подвійний клік куплено! Кліки тепер дають x2';
+                    } else if (doubleClick) {
+                        upgradeStatus.textContent = 'Ви вже маєте подвійний клік!';
+                    } else {
+                        upgradeStatus.textContent = 'Недостатньо кліків! Потрібно 25';
+                    }
+                    break;
+                    
+                case 'megaClick':
+                    if (clickCount >= 50 && !megaClick) {
+                        clickCount -= 50;
+                        megaClick = true;
+                        upgradeStatus.textContent = 'Мега клік куплено! Кліки тепер дають x5';
+                    } else if (megaClick) {
+                        upgradeStatus.textContent = 'Ви вже маєте мега клік!';
+                    } else {
+                        upgradeStatus.textContent = 'Недостатньо кліків! Потрібно 50';
+                    }
+                    break;
+            }
+            
+            updateCounter();
+        }
+
+        function showSearchResults(query) {
+            const browserContent = document.getElementById('browserContent');
+            
+            browserContent.innerHTML = `
+                <h2>Результати пошуку для "${query}"</h2>
+                <div class="search-results">
+                    <div class="search-result">
+                        <div class="search-result-title" onclick="alert('Перехід на сайт про ${query}')">Інформація про ${query}</div>
+                        <div class="search-result-url">https://www.wikipedia.org/wiki/${query}</div>
+                        <div class="search-result-desc">Детальна інформація про ${query} з Вікіпедії - вільної енциклопедії</div>
+                    </div>
+                    <div class="search-result">
+                        <div class="search-result-title" onclick="alert('Перехід на новини про ${query}')">Новини про ${query}</div>
+                        <div class="search-result-url">https://www.news.com/${query}</div>
+                        <div class="search-result-desc">Останні новини та події, пов'язані з ${query}</div>
+                    </div>
+                    <div class="search-result">
+                        <div class="search-result-title" onclick="alert('Перехід на відео про ${query}')">Відео про ${query}</div>
+                        <div class="search-result-url">https://www.youtube.com/results?search_query=${query}</div>
+                        <div class="search-result-desc">Перегляньте відео про ${query} на YouTube</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Встановлення EXE
+        function runExeInstaller(fileName) {
+            document.getElementById('installerFileName').textContent = fileName;
+            document.getElementById('installerStatus').textContent = 'Готово до встановлення';
+            document.getElementById('installerProgress').style.width = '0%';
+            document.getElementById('installerActionButton').textContent = 'Встановити';
+            document.getElementById('installerActionButton').onclick = startInstallation;
+            
+            document.getElementById('installerWindow').classList.add('active');
+        }
+
+        function startInstallation() {
+            const progressBar = document.getElementById('installerProgress');
+            const statusText = document.getElementById('installerStatus');
+            const actionButton = document.getElementById('installerActionButton');
+            
+            actionButton.textContent = 'Встановлення...';
+            actionButton.disabled = true;
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    statusText.textContent = 'Встановлення завершено!';
+                    actionButton.textContent = 'Готово';
+                    actionButton.disabled = false;
+                    actionButton.onclick = closeInstaller;
+                    
+                    // Додаємо ярлик на робочий стіл
+                    if (!files.desktop.some(file => file.name === 'Моя гра.lnk')) {
+                        files.desktop.push({ name: 'Моя гра.lnk', type: 'file' });
+                    }
+                } else {
+                    statusText.textContent = `Встановлення... ${Math.round(progress)}%`;
+                }
+                
+                progressBar.style.width = `${progress}%`;
+            }, 300);
+        }
+
+        function cancelInstallation() {
+            document.getElementById('installerWindow').classList.remove('active');
+        }
+
+        function closeInstaller() {
+            document.getElementById('installerWindow').classList.remove('active');
+        }
+
+        // Сканування файлів
+        function scanSelectedFile() {
+            if (!selectedFile) {
+                alert('Будь ласка, виберіть файл для сканування');
+                return;
+            }
+            
+            const file = files[currentDirectory].find(f => f.name === selectedFile);
+            if (!file) return;
+            
+            document.getElementById('scannerFileName').textContent = selectedFile;
+            document.getElementById('scannerStatus').textContent = 'Початок сканування...';
+            document.getElementById('scannerProgress').style.width = '0%';
+            document.getElementById('scannerResult').style.display = 'none';
+            
+            document.getElementById('scannerWindow').classList.add('active');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Випадковий результат сканування
+                    const isSafe = Math.random() > 0.3;
+                    const resultElement = document.getElementById('scannerResult');
+                    const resultText = document.getElementById('scannerResultText');
+                    
+                    if (isSafe) {
+                        resultElement.className = 'scanner-result safe';
+                        resultText.textContent = 'Файл безпечний. Загроз не виявлено.';
+                        document.getElementById('scannerStatus').textContent = 'Сканування завершено - файл безпечний';
+                    } else {
+                        resultElement.className = 'scanner-result warning';
+                        resultText.textContent = 'УВАГА! Виявлено потенційно небезпечний файл. Рекомендується видалити.';
+                        document.getElementById('scannerStatus').textContent = 'Сканування завершено - виявлено загрозу';
+                    }
+                    
+                    resultElement.style.display = 'block';
+                } else {
+                    document.getElementById('scannerStatus').textContent = `Сканування... ${Math.round(progress)}%`;
+                }
+                
+                document.getElementById('scannerProgress').style.width = `${progress}%`;
+            }, 200);
+        }
+
+        function closeScanner() {
+            document.getElementById('scannerWindow').classList.remove('active');
         }
 
         // Ініціалізація при завантаженні
