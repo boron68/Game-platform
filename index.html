@@ -423,6 +423,11 @@
             border-radius: 4px;
         }
 
+        .file-icon.app {
+            background: #9b59b6;
+            border-radius: 4px;
+        }
+
         .file-name {
             font-size: 12px;
             text-align: center;
@@ -868,7 +873,7 @@
 <body>
     <div class="desktop">
         <!-- Значки на робочому столі -->
-        <div class="desktop-icons">
+        <div class="desktop-icons" id="desktopIcons">
             <div class="desktop-icon" onclick="openApp('explorer')">
                 <svg viewBox="0 0 24 24">
                     <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
@@ -1162,6 +1167,9 @@
     </div>
 
     <script>
+        // Глобальні змінні для додатків
+        let installedApps = [];
+
         // Оновлення часу
         function updateTime() {
             const now = new Date();
@@ -1263,6 +1271,8 @@
                         changeDirectory(file.name.toLowerCase());
                     } else if (file.type === 'exe') {
                         runExeInstaller(file.name);
+                    } else if (file.type === 'app') {
+                        openInstalledApp(file.name);
                     }
                 };
                 
@@ -1272,6 +1282,8 @@
                             '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>' : 
                             file.type === 'exe' ?
                             '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>' :
+                            file.type === 'app' ?
+                            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>' :
                             '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
                         }
                     </div>
@@ -1439,11 +1451,16 @@
                 const appElement = document.createElement('div');
                 appElement.className = 'store-app';
                 
+                // Перевіряємо, чи вже встановлений додаток
+                const isInstalled = installedApps.includes(app.name);
+                
                 appElement.innerHTML = `
                     <div class="app-image">${app.name.charAt(0)}</div>
                     <div class="app-title">${app.name}</div>
                     <div class="app-description">${app.description}</div>
-                    <button class="install-button" onclick="installApp(${app.id})">Встановити</button>
+                    <button class="install-button" onclick="installApp(${app.id})" ${isInstalled ? 'disabled style="background: #ccc;"' : ''}>
+                        ${isInstalled ? 'Встановлено' : 'Встановити'}
+                    </button>
                 `;
                 
                 appsGrid.appendChild(appElement);
@@ -1472,7 +1489,7 @@
             }
             
             if (app) {
-                runExeInstaller(`${app.name}.exe`);
+                runExeInstaller(`${app.name}.exe`, app.name);
             }
         }
 
@@ -1650,18 +1667,20 @@
             `;
         }
 
-        // Встановлення EXE
-        function runExeInstaller(fileName) {
+        // Встановлення EXE та створення ярликів
+        function runExeInstaller(fileName, appName = null) {
+            const appDisplayName = appName || fileName.replace('.exe', '');
+            
             document.getElementById('installerFileName').textContent = fileName;
             document.getElementById('installerStatus').textContent = 'Готово до встановлення';
             document.getElementById('installerProgress').style.width = '0%';
             document.getElementById('installerActionButton').textContent = 'Встановити';
-            document.getElementById('installerActionButton').onclick = startInstallation;
+            document.getElementById('installerActionButton').onclick = () => startInstallation(appDisplayName);
             
             document.getElementById('installerWindow').classList.add('active');
         }
 
-        function startInstallation() {
+        function startInstallation(appName) {
             const progressBar = document.getElementById('installerProgress');
             const statusText = document.getElementById('installerStatus');
             const actionButton = document.getElementById('installerActionButton');
@@ -1678,11 +1697,14 @@
                     statusText.textContent = 'Встановлення завершено!';
                     actionButton.textContent = 'Готово';
                     actionButton.disabled = false;
-                    actionButton.onclick = closeInstaller;
+                    actionButton.onclick = () => {
+                        closeInstaller();
+                        createDesktopShortcut(appName);
+                    };
                     
-                    // Додаємо ярлик на робочий стіл
-                    if (!files.desktop.some(file => file.name === 'Моя гра.lnk')) {
-                        files.desktop.push({ name: 'Моя гра.lnk', type: 'file' });
+                    // Додаємо до списку встановлених додатків
+                    if (!installedApps.includes(appName)) {
+                        installedApps.push(appName);
                     }
                 } else {
                     statusText.textContent = `Встановлення... ${Math.round(progress)}%`;
@@ -1698,6 +1720,86 @@
 
         function closeInstaller() {
             document.getElementById('installerWindow').classList.remove('active');
+        }
+
+        // Створення ярлика на робочому столі
+        function createDesktopShortcut(appName) {
+            // Перевіряємо, чи вже є такий ярлик
+            if (files.desktop.some(file => file.name === `${appName}.lnk`)) {
+                return;
+            }
+            
+            // Додаємо ярлик на робочий стіл
+            files.desktop.push({
+                name: `${appName}.lnk`,
+                type: 'app'
+            });
+            
+            // Оновлюємо відображення робочого столу
+            updateDesktopIcons();
+            
+            // Показуємо сповіщення
+            showInstallationNotification(appName);
+        }
+
+        function updateDesktopIcons() {
+            const desktopIcons = document.getElementById('desktopIcons');
+            
+            // Зберігаємо початкові значки
+            let iconsHTML = `
+                <div class="desktop-icon" onclick="openApp('explorer')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+                    </svg>
+                    <span>Цей комп'ютер</span>
+                </div>
+                <div class="desktop-icon" onclick="openApp('browser')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                    <span>Microsoft Edge</span>
+                </div>
+                <div class="desktop-icon" onclick="runExeInstaller('game_installer.exe')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/>
+                    </svg>
+                    <span>Game Installer.exe</span>
+                </div>
+            `;
+            
+            // Додаємо ярлики встановлених додатків
+            files.desktop.forEach(file => {
+                if (file.type === 'app') {
+                    const appName = file.name.replace('.lnk', '');
+                    iconsHTML += `
+                        <div class="desktop-icon" onclick="openInstalledApp('${appName}')">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span>${appName}</span>
+                        </div>
+                    `;
+                }
+            });
+            
+            desktopIcons.innerHTML = iconsHTML;
+        }
+
+        function openInstalledApp(appName) {
+            alert(`Запуск додатка: ${appName}\n\nЦе імітація - у реальній системі додаток був би запущений.`);
+        }
+
+        function showInstallationNotification(appName) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `
+                <p>Встановлення завершено</p>
+                <p>Ярлик "${appName}" додано на робочий стіл</p>
+            `;
+            notification.classList.add('active');
+            
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 3000);
         }
 
         // Сканування файлів
@@ -1756,6 +1858,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadFiles();
             loadStoreApps();
+            updateDesktopIcons();
         });
     </script>
 </body>
