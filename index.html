@@ -237,8 +237,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 400px;
+            width: 800px;
+            height: 500px;
             background: white;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -248,7 +248,8 @@
         }
 
         .window.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         .window-header {
@@ -292,8 +293,10 @@
 
         .window-content {
             padding: 20px;
-            height: calc(100% - 32px);
+            flex: 1;
             overflow: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .notification {
@@ -318,6 +321,278 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Стилі для файлового менеджера */
+        .file-manager-toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .toolbar-button {
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .toolbar-button:hover {
+            background: #e5e5e5;
+        }
+
+        .file-manager-content {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            border-right: 1px solid #e1e1e1;
+            padding-right: 15px;
+        }
+
+        .sidebar-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            background: #e5f3ff;
+        }
+
+        .files-area {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            align-content: flex-start;
+        }
+
+        .file-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .file-item:hover {
+            background: #f0f0f0;
+        }
+
+        .file-item.selected {
+            background: #e5f3ff;
+        }
+
+        .file-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .file-icon.folder {
+            background: #ffb900;
+            border-radius: 4px;
+        }
+
+        .file-icon.file {
+            background: #0078d7;
+            border-radius: 4px;
+        }
+
+        .file-name {
+            font-size: 12px;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        /* Стилі для Microsoft Store */
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .store-categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+            padding-bottom: 10px;
+        }
+
+        .category {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .category.active {
+            background: #0067c0;
+            color: white;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .store-app {
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .store-app:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-image {
+            width: 64px;
+            height: 64px;
+            background: #0078d7;
+            border-radius: 8px;
+            margin: 0 auto 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .app-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .app-description {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .install-button {
+            padding: 6px 12px;
+            background: #0067c0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .install-button:hover {
+            background: #0056a3;
+        }
+
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        .context-menu-item {
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .context-menu-item:hover {
+            background: #f0f0f0;
+        }
+
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-header {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-button.primary {
+            background: #0067c0;
+            color: white;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .modal-overlay.active {
+            display: block;
         }
     </style>
 </head>
@@ -421,14 +696,51 @@
                 </div>
             </div>
             <div class="window-content">
-                <h2>Локальний диск (C:)</h2>
-                <p>Папки:</p>
-                <ul>
-                    <li>Користувачі</li>
-                    <li>Програми</li>
-                    <li>Windows</li>
-                    <li>Програмні файли</li>
-                </ul>
+                <div class="file-manager-toolbar">
+                    <button class="toolbar-button" onclick="createNewFolder()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Нова папка
+                    </button>
+                    <button class="toolbar-button" onclick="deleteSelectedItem()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        Видалити
+                    </button>
+                </div>
+                <div class="file-manager-content">
+                    <div class="sidebar">
+                        <div class="sidebar-item active" onclick="changeDirectory('desktop')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+                            </svg>
+                            Робочий стіл
+                        </div>
+                        <div class="sidebar-item" onclick="changeDirectory('documents')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
+                            </svg>
+                            Документи
+                        </div>
+                        <div class="sidebar-item" onclick="changeDirectory('downloads')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Завантаження
+                        </div>
+                    </div>
+                    <div class="files-area" id="filesArea" oncontextmenu="showContextMenu(event)">
+                        <!-- Файли будуть додані через JavaScript -->
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -458,8 +770,19 @@
                 </div>
             </div>
             <div class="window-content">
-                <h2>Microsoft Store</h2>
-                <p>Відкрийте для себе програми, ігри, розваги та багато іншого.</p>
+                <div class="store-header">
+                    <h2>Microsoft Store</h2>
+                    <div>Відкрийте для себе програми, ігри, розваги та багато іншого.</div>
+                </div>
+                <div class="store-categories">
+                    <div class="category active" onclick="changeStoreCategory('all')">Всі програми</div>
+                    <div class="category" onclick="changeStoreCategory('games')">Ігри</div>
+                    <div class="category" onclick="changeStoreCategory('productivity')">Продуктивність</div>
+                    <div class="category" onclick="changeStoreCategory('entertainment')">Розваги</div>
+                </div>
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Програми будуть додані через JavaScript -->
+                </div>
             </div>
         </div>
 
@@ -490,6 +813,26 @@
             <p>Windows 11</p>
             <p>Система оновлена до останньої версії.</p>
         </div>
+
+        <!-- Контекстне меню -->
+        <div class="context-menu" id="contextMenu">
+            <div class="context-menu-item" onclick="createNewFolder()">Нова папка</div>
+            <div class="context-menu-item" onclick="deleteSelectedItem()">Видалити</div>
+            <div class="context-menu-item" onclick="renameSelectedItem()">Перейменувати</div>
+        </div>
+
+        <!-- Модальне вікно для створення папки -->
+        <div class="modal" id="folderModal">
+            <div class="modal-header">Створити нову папку</div>
+            <input type="text" class="modal-input" id="folderNameInput" placeholder="Введіть назву папки" value="Нова папка">
+            <div class="modal-buttons">
+                <button class="modal-button" onclick="closeModal()">Скасувати</button>
+                <button class="modal-button primary" onclick="confirmCreateFolder()">Створити</button>
+            </div>
+        </div>
+
+        <!-- Оверлей для модального вікна -->
+        <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
     </div>
 
     <script>
@@ -516,6 +859,13 @@
             
             // Відкриваємо відповідне вікно
             document.getElementById(appName + 'Window').classList.add('active');
+            
+            // Ініціалізуємо вміст додатку, якщо потрібно
+            if (appName === 'explorer') {
+                loadFiles();
+            } else if (appName === 'store') {
+                loadStoreApps();
+            }
         }
 
         function closeApp(appName) {
@@ -540,6 +890,263 @@
             if (!startMenu.contains(event.target) && !startButton.contains(event.target)) {
                 startMenu.classList.remove('active');
             }
+        });
+
+        // Файловий менеджер
+        let currentDirectory = 'desktop';
+        let selectedFile = null;
+        let files = {
+            desktop: [
+                { name: 'Документи', type: 'folder' },
+                { name: 'Зображення', type: 'folder' },
+                { name: 'Музика', type: 'folder' },
+                { name: 'Відео', type: 'folder' },
+                { name: 'Завантаження', type: 'folder' },
+                { name: 'readme.txt', type: 'file' }
+            ],
+            documents: [
+                { name: 'Робота', type: 'folder' },
+                { name: 'Особисте', type: 'folder' },
+                { name: 'Проекти', type: 'folder' },
+                { name: 'resume.docx', type: 'file' },
+                { name: 'budget.xlsx', type: 'file' }
+            ],
+            downloads: [
+                { name: 'chrome_installer.exe', type: 'file' },
+                { name: 'photo.jpg', type: 'file' },
+                { name: 'music.mp3', type: 'file' }
+            ]
+        };
+
+        function loadFiles() {
+            const filesArea = document.getElementById('filesArea');
+            filesArea.innerHTML = '';
+            
+            const currentFiles = files[currentDirectory] || [];
+            
+            currentFiles.forEach(file => {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'file-item';
+                fileElement.onclick = () => selectFile(file.name);
+                fileElement.ondblclick = () => {
+                    if (file.type === 'folder') {
+                        changeDirectory(file.name.toLowerCase());
+                    }
+                };
+                
+                fileElement.innerHTML = `
+                    <div class="file-icon ${file.type}">
+                        ${file.type === 'folder' ? 
+                            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>' : 
+                            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
+                        }
+                    </div>
+                    <div class="file-name">${file.name}</div>
+                `;
+                
+                filesArea.appendChild(fileElement);
+            });
+        }
+
+        function changeDirectory(directory) {
+            currentDirectory = directory;
+            
+            // Оновлюємо активний елемент у бічній панелі
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            document.querySelector(`.sidebar-item:nth-child(${getSidebarIndex(directory)})`).classList.add('active');
+            
+            loadFiles();
+        }
+
+        function getSidebarIndex(directory) {
+            switch(directory) {
+                case 'desktop': return 1;
+                case 'documents': return 2;
+                case 'downloads': return 3;
+                default: return 1;
+            }
+        }
+
+        function selectFile(fileName) {
+            selectedFile = fileName;
+            
+            // Знімаємо виділення з усіх файлів
+            document.querySelectorAll('.file-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Знаходимо та виділяємо вибраний файл
+            const fileItems = document.querySelectorAll('.file-item');
+            for (let item of fileItems) {
+                if (item.querySelector('.file-name').textContent === fileName) {
+                    item.classList.add('selected');
+                    break;
+                }
+            }
+        }
+
+        function showContextMenu(event) {
+            event.preventDefault();
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${event.pageX}px`;
+            contextMenu.style.top = `${event.pageY}px`;
+            
+            // Закриваємо контекстне меню при кліку поза ним
+            setTimeout(() => {
+                document.addEventListener('click', closeContextMenu);
+            }, 100);
+        }
+
+        function closeContextMenu() {
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'none';
+            document.removeEventListener('click', closeContextMenu);
+        }
+
+        function createNewFolder() {
+            closeContextMenu();
+            document.getElementById('modalOverlay').classList.add('active');
+            document.getElementById('folderModal').classList.add('active');
+            document.getElementById('folderNameInput').focus();
+            document.getElementById('folderNameInput').select();
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.getElementById('folderModal').classList.remove('active');
+        }
+
+        function confirmCreateFolder() {
+            const folderName = document.getElementById('folderNameInput').value || 'Нова папка';
+            
+            if (!files[currentDirectory]) {
+                files[currentDirectory] = [];
+            }
+            
+            files[currentDirectory].push({
+                name: folderName,
+                type: 'folder'
+            });
+            
+            loadFiles();
+            closeModal();
+        }
+
+        function deleteSelectedItem() {
+            closeContextMenu();
+            
+            if (!selectedFile) return;
+            
+            if (confirm(`Видалити "${selectedFile}"?`)) {
+                files[currentDirectory] = files[currentDirectory].filter(file => file.name !== selectedFile);
+                loadFiles();
+                selectedFile = null;
+            }
+        }
+
+        function renameSelectedItem() {
+            closeContextMenu();
+            
+            if (!selectedFile) return;
+            
+            const newName = prompt(`Введіть нову назву для "${selectedFile}":`, selectedFile);
+            
+            if (newName && newName.trim() !== '') {
+                const fileIndex = files[currentDirectory].findIndex(file => file.name === selectedFile);
+                if (fileIndex !== -1) {
+                    files[currentDirectory][fileIndex].name = newName;
+                    loadFiles();
+                    selectedFile = newName;
+                }
+            }
+        }
+
+        // Microsoft Store
+        let storeApps = {
+            all: [
+                { id: 1, name: 'Microsoft Word', description: 'Текстовий редактор', category: 'productivity' },
+                { id: 2, name: 'Microsoft Excel', description: 'Електронні таблиці', category: 'productivity' },
+                { id: 3, name: 'Spotify', description: 'Музичний сервіс', category: 'entertainment' },
+                { id: 4, name: 'Netflix', description: 'Стрімінг сервіс', category: 'entertainment' },
+                { id: 5, name: 'Minecraft', description: 'Пісочниця', category: 'games' },
+                { id: 6, name: 'Adobe Photoshop', description: 'Редактор зображень', category: 'productivity' }
+            ],
+            games: [
+                { id: 5, name: 'Minecraft', description: 'Пісочниця', category: 'games' },
+                { id: 7, name: 'Solitaire', description: 'Картярська гра', category: 'games' },
+                { id: 8, name: 'Chess', description: 'Шахи', category: 'games' }
+            ],
+            productivity: [
+                { id: 1, name: 'Microsoft Word', description: 'Текстовий редактор', category: 'productivity' },
+                { id: 2, name: 'Microsoft Excel', description: 'Електронні таблиці', category: 'productivity' },
+                { id: 6, name: 'Adobe Photoshop', description: 'Редактор зображень', category: 'productivity' },
+                { id: 9, name: 'Zoom', description: 'Відеоконференції', category: 'productivity' }
+            ],
+            entertainment: [
+                { id: 3, name: 'Spotify', description: 'Музичний сервіс', category: 'entertainment' },
+                { id: 4, name: 'Netflix', description: 'Стрімінг сервіс', category: 'entertainment' },
+                { id: 10, name: 'YouTube', description: 'Відеоплатформа', category: 'entertainment' }
+            ]
+        };
+
+        let currentCategory = 'all';
+
+        function loadStoreApps() {
+            const appsGrid = document.getElementById('appsGrid');
+            appsGrid.innerHTML = '';
+            
+            const apps = storeApps[currentCategory] || [];
+            
+            apps.forEach(app => {
+                const appElement = document.createElement('div');
+                appElement.className = 'store-app';
+                
+                appElement.innerHTML = `
+                    <div class="app-image">${app.name.charAt(0)}</div>
+                    <div class="app-title">${app.name}</div>
+                    <div class="app-description">${app.description}</div>
+                    <button class="install-button" onclick="installApp(${app.id})">Встановити</button>
+                `;
+                
+                appsGrid.appendChild(appElement);
+            });
+        }
+
+        function changeStoreCategory(category) {
+            currentCategory = category;
+            
+            // Оновлюємо активну категорію
+            document.querySelectorAll('.category').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            loadStoreApps();
+        }
+
+        function installApp(appId) {
+            // Знаходимо додаток за ID
+            let app = null;
+            for (let category in storeApps) {
+                app = storeApps[category].find(a => a.id === appId);
+                if (app) break;
+            }
+            
+            if (app) {
+                alert(`Додаток "${app.name}" встановлюється...`);
+                // Тут була б реальна логіка встановлення
+            }
+        }
+
+        // Ініціалізація при завантаженні
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFiles();
+            loadStoreApps();
         });
     </script>
 </body>
